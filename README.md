@@ -1,5 +1,5 @@
-++++++++++.     .....  
-    <!doctype html>
+++++++++++.     ..... 
+<!doctype html>
 <html lang="hi">
 <head>
 <meta charset="utf-8">
@@ -8,11 +8,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#000;--neon:#39ff14;--muted:rgba(57,255,20,0.08)}
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 html,body{height:100%;background:var(--bg);color:var(--neon);font-family:'Share Tech Mono',monospace;overflow:hidden}
 canvas#matrix{position:fixed;inset:0;z-index:0}
-.black-btn{position:fixed;top:10px;left:10px;background:#000;border:1px solid var(--neon);color:var(--neon);padding:6px 12px;border-radius:8px;z-index:120}
-header{position:fixed;top:10px;left:0;right:0;text-align:center;z-index:120;font-weight:800;color:var(--neon)}
+.black-btn{position:fixed;top:10px;left:10px;background:#000;border:1px solid var(--neon);color:var(--neon);padding:6px 12px;border-radius:8px;z-index:120;cursor:pointer}
+header{position:fixed;top:10px;left:0;right:0;text-align:center;z-index:120;font-weight:800;color:var(--neon);font-size:20px;letter-spacing:1px}
+.settings-btn{position:fixed;top:10px;right:10px;background:#000;border:1px solid var(--neon);color:var(--neon);padding:6px 10px;border-radius:8px;z-index:130;cursor:pointer}
+.settings-panel{position:fixed;top:55px;right:10px;background:rgba(0,0,0,0.85);border:1px solid var(--neon);border-radius:10px;padding:12px 16px;z-index:140;display:none;flex-direction:column;gap:8px;backdrop-filter:blur(4px)}
+.settings-panel.show{display:flex;animation:fadeIn .3s ease}
+.settings-panel button{background:#000;border:1px solid var(--neon);color:var(--neon);padding:6px 10px;border-radius:6px;cursor:pointer}
 .view{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;padding:18px;z-index:20}
 .view.active{display:flex;animation:fadeIn .35s ease}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -32,11 +36,23 @@ header{position:fixed;top:10px;left:0;right:0;text-align:center;z-index:120;font
 .info{font-size:13px;color:rgba(57,255,20,0.7);text-align:center;margin-top:8px}
 </style>
 </head>
-<body>
+<body oncontextmenu="return false">
 
 <canvas id="matrix"></canvas>
 <button id="blackBtn" class="black-btn">← BLACK</button>
 <header>JACK.LIVE</header>
+<button id="settingsBtn" class="settings-btn">⚙️</button>
+
+<div id="settingsPanel" class="settings-panel">
+  <button id="fullScreenBtn">🖥 Full Screen</button>
+  <button id="colorGreen">🟢 Neon Green</button>
+  <button id="colorBlue">🔵 Neon Blue</button>
+  <button id="colorRed">🔴 Neon Red</button>
+  <button id="colorPink">💗 Neon Pink</button>
+  <button id="speedSlow">🐢 Slow Matrix</button>
+  <button id="speedFast">⚡ Fast Matrix</button>
+  <button id="closeSettings">❌ Close</button>
+</div>
 
 <section id="homeView" class="view active">
   <div class="panel">
@@ -69,35 +85,43 @@ header{position:fixed;top:10px;left:0;right:0;text-align:center;z-index:120;font
 <button id="enterBtn" class="enter-btn">ENTAR</button>
 
 <script>
-/* Matrix effect */
+/* Disable text selection and context menu globally */
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('cut', e => e.preventDefault());
+document.addEventListener('paste', e => e.preventDefault());
+
+/* MATRIX EFFECT */
 const canvas=document.getElementById('matrix'),ctx=canvas.getContext('2d');
-let w=canvas.width=innerWidth,h=canvas.height=innerHeight,cols=Math.floor(w/14),drops=Array(cols).fill(1);
+let w=canvas.width=innerWidth,h=canvas.height=innerHeight,cols=Math.floor(w/14),drops=Array(cols).fill(1),matrixSpeed=50;
 function drawMatrix(){ctx.fillStyle='rgba(0,0,0,0.14)';ctx.fillRect(0,0,w,h);
 ctx.fillStyle='rgba(57,255,20,0.55)';ctx.font='14px monospace';
 for(let i=0;i<drops.length;i++){const ch=String.fromCharCode(33+Math.random()*94);
 ctx.fillText(ch,i*14,drops[i]*14);if(drops[i]*14>h&&Math.random()>0.975)drops[i]=0;drops[i]++;}}
-setInterval(drawMatrix,50);
+let matrixTimer=setInterval(drawMatrix,matrixSpeed);
 addEventListener('resize',()=>{w=canvas.width=innerWidth;h=canvas.height=innerHeight;cols=Math.floor(w/14);drops=Array(cols).fill(1);});
 
-/* View switching */
+/* VIEW SWITCHING */
 const homeView=document.getElementById('homeView'),secondView=document.getElementById('secondView');
 enterBtn.onclick=()=>{homeView.classList.remove('active');secondView.classList.add('active');}
 blackBtn.onclick=()=>{secondView.classList.remove('active');homeView.classList.add('active');}
 btnBack.onclick=()=>{secondView.classList.remove('active');homeView.classList.add('active');}
 
-/* Terminal typing animation */
+/* TERMINAL */
 const terminal=document.getElementById('terminal');
 const lines=['Initializing JACK.LIVE secure shell...','Authenticating ••• success','Loading poetic modules...','Mounting emotions [ok]','Access Granted — Welcome'];
-let i=0,j=0;function typeTerm(){if(i>=lines.length)return;const l=lines[i];
+let i=0,j=0;
+function typeTerm(){if(i>=lines.length)return;const l=lines[i];
 if(j<=l.length){terminal.textContent=lines.slice(0,i).join('\n')+(i?'\n':'')+l.slice(0,j)+'█';j++;setTimeout(typeTerm,50);}else{j=0;i++;setTimeout(typeTerm,600);}}typeTerm();
 
-/* I LOVE YOU typing */
+/* I LOVE YOU */
 const loveEl=document.getElementById('loveTyping'),loveCur=document.getElementById('loveCursor'),loveGlow=document.getElementById('loveGlow');
 function startLove(){const text='I LOVE YOU';let k=0;loveEl.textContent='';loveGlow.textContent='';loveCur.style.display='inline-block';
 function t(){if(k<=text.length){loveEl.textContent=text.slice(0,k);k++;setTimeout(t,120);}else{loveCur.style.display='none';loveGlow.textContent=text;loveGlow.classList.add('show');}}t();}
 btnEntar.onclick=startLove;
 
-/* Shayri Generator */
+/* SHAYRI */
 const base=["तेरी मुस्कान मेरी पहली ज़रूरत है।","हर ख़ुशी मेरी तेरे नाम कर दूँ।","दिल के खज़ाने में बस तुम्हारा पता है।","तेरे बिना ये चाँद भी फीका लगता है।","तेरी आँखों की चमक में खो जाना चाहता हूँ।","तेरी यादें दिल को हमेशा गुज़रने नहीं देतीं।"];
 function makeShayri(){const a=base[Math.floor(Math.random()*base.length)];
 const b=base[Math.floor(Math.random()*base.length)];
@@ -109,15 +133,41 @@ function showShayri(){count++;const text=`${makeShayri()} (${count}/5000)`;sh.te
 function step(){if(p<=text.length){sh.textContent=text.slice(0,p)+(p%2?'█':'');p++;setTimeout(step,35);}else{sh.textContent=text;sh.classList.add('show');}}step();}
 btnPlus.onclick=showShayri;
 
-/* Dots button — animated greeting */
+/* DOTS — GREETING */
 const helloEl=document.getElementById('helloMsg');
 btnDots.onclick=()=>{const msg="Hello sir, आप कैसे हैं ☺️";helloEl.textContent='';helloEl.classList.remove('show');
 let x=0;function type(){if(x<=msg.length){helloEl.textContent=msg.slice(0,x)+(x%2?'█':'');x++;setTimeout(type,80);}else{helloEl.textContent=msg;helloEl.classList.add('show');}}type();};
 
-/* Keyboard */
+/* SETTINGS PANEL */
+const settingsBtn=document.getElementById('settingsBtn'),panel=document.getElementById('settingsPanel');
+settingsBtn.onclick=()=>panel.classList.toggle('show');
+document.getElementById('closeSettings').onclick=()=>panel.classList.remove('show');
+
+document.getElementById('fullScreenBtn').onclick=()=>{
+  if(!document.fullscreenElement){document.documentElement.requestFullscreen();}
+  else{document.exitFullscreen();}
+};
+
+/* Color change */
+function changeColor(color){
+  document.documentElement.style.setProperty('--neon',color);
+  panel.classList.remove('show');
+}
+document.getElementById('colorGreen').onclick=()=>changeColor('#39ff14');
+document.getElementById('colorBlue').onclick=()=>changeColor('#00ffff');
+document.getElementById('colorRed').onclick=()=>changeColor('#ff4444');
+document.getElementById('colorPink').onclick=()=>changeColor('#ff33cc');
+
+/* Matrix speed */
+document.getElementById('speedSlow').onclick=()=>{clearInterval(matrixTimer);matrixSpeed=100;matrixTimer=setInterval(drawMatrix,matrixSpeed);}
+document.getElementById('speedFast').onclick=()=>{clearInterval(matrixTimer);matrixSpeed=25;matrixTimer=setInterval(drawMatrix,matrixSpeed);}
+
+/* KEYBOARD SHORTCUTS */
 addEventListener('keydown',e=>{
-if(e.key==='Enter'){if(homeView.classList.contains('active')){homeView.classList.remove('active');secondView.classList.add('active');}else showShayri();}
-if(e.key==='Escape'){secondView.classList.remove('active');homeView.classList.add('active');}});
+  if(e.key==='Enter'){if(homeView.classList.contains('active')){homeView.classList.remove('active');secondView.classList.add('active');}else showShayri();}
+  if(e.key==='Escape'){secondView.classList.remove('active');homeView.classList.add('active');}
+});
 </script>
 </body>
 </html>
+
