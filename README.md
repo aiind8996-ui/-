@@ -155,7 +155,7 @@ btnBack.onclick=()=>{secondView.classList.remove('active');homeView.classList.ad
 
 /* TERMINAL TYPING */
 const terminal=document.getElementById('terminal');
-const lines=['Initializing JACK.LIVE secure shell...','Authenticating ••• success','Loading poetic modules...','Mounting emotions [ok]','Access Granted — Welcome'];
+const lines=['Initializing vinay. love secure shell...','Authenticating ••• success','Loading poetic modules...','Mounting emotions [ok]','Access Granted — Welcome'];
 let i=0,j=0;
 function typeTerm(){
   if(i>=lines.length)return;
