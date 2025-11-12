@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>In.LIVE — Shayri Mode</title>
+<title>"**" — Shayri Mode</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -99,7 +99,7 @@ header{
 <body oncontextmenu="return false">
 
 <button id="blackBtn" class="black-btn">← BLACK</button>
-<header>In.LIVE</header>
+<header>"**"</header>
 <button id="settingsBtn" class="settings-btn">⚙️</button>
 
 <div id="settingsPanel" class="settings-panel">
@@ -113,7 +113,7 @@ header{
 
 <section id="homeView" class="view active">
   <div class="panel">
-    <div class="title">In.LIVE</div>
+    <div class="title">;;;!</div>
     <div id="terminal" class="terminal"></div>
     <div class="info">Press <strong>ENTAR</strong> to open control panel</div>
   </div>
