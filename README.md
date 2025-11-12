@@ -99,7 +99,7 @@ header{
 <body oncontextmenu="return false">
 
 <button id="blackBtn" class="black-btn">← BLACK</button>
-<header>"**"</header>
+<header>DC PAGE</header>
 <button id="settingsBtn" class="settings-btn">⚙️</button>
 
 <div id="settingsPanel" class="settings-panel">
@@ -113,7 +113,7 @@ header{
 
 <section id="homeView" class="view active">
   <div class="panel">
-    <div class="title">;;;!</div>
+    <div class="title">JACK</div>
     <div id="terminal" class="terminal"></div>
     <div class="info">Press <strong>ENTAR</strong> to open control panel</div>
   </div>
