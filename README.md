@@ -190,7 +190,26 @@ function startLove(){
 btnEntar.onclick=startLove;
 
 /* SHAYRI GENERATOR */
-const base=[
+const base=["उसने कहा – 'मुझसे दूर रहो।' मैंने कहा – 'ठीक है, अब screenshots से काम चलेगा।'",
+"माँ बोली – 'कब तक phone देखेगा?' मैंने कहा – 'जब तक last seen दिखती रहेगी।'",
+"Crush बोली – 'तुम cute हो!' मैंने कहा – 'हाँ, पर limited edition – out of stock।'",
+"पप्पू बोला – 'तेरा exam कैसा गया?' मैंने कहा – 'जैसे love story – start funny, end tragic।'",
+"Crush बोली – 'Tum busy थे?' मैंने कहा – 'नहीं, उम्मीदों को format कर रहा था।'",
+"माँ बोली – 'शादी कर ले।' मैंने कहा – 'माँ, crush की शादी attend करके आया हूँ।'",
+"डॉक्टर बोला – 'तू थका क्यों है?' मैंने कहा – 'emotions night shift में हैं।'",
+"वो बोली – 'तुम hero हो।' मैंने कहा – 'हाँ, heartbreak movie का।'",
+"Crush बोली – 'मैं किसी और को पसंद करती हूँ।' मैंने कहा – 'ठीक है, delete press करना सीख लिया हूँ।'",
+"पप्पू बोला – 'तेरा smile fake है?' मैंने कहा – 'हाँ, pain-compatible version है।'",
+"माँ बोली – 'तेरी GF कहाँ है?' मैंने कहा – 'recycle bin में।'",
+"Crush बोली – 'तुम boring हो।' मैंने कहा – 'हाँ, अब life भी buffer कर रही है।'",
+"डॉक्टर बोला – 'परेशान क्यों है?' मैंने कहा – 'crush online है, reply नहीं।'",
+"Crush बोली – 'मैं तुम्हें miss करती हूँ।' मैंने कहा – 'auto-lie detector beep किया।'",
+"पप्पू बोला – 'भाई, tu single क्यों?' मैंने कहा – 'क्योंकि heartbreak का subscription lifetime है।'",
+"Crush बोली – 'तुम strong हो।' मैंने कहा – 'हाँ, emoji से दर्द छुपा लेता हूँ।'",
+"Crush बोली – 'तुम caring हो।' मैंने कहा – 'हाँ, इसलिए ignored हूँ।'",
+"डॉक्टर बोला – 'तेरा pressure low है।' मैंने कहा – 'हाँ, reply नहीं आया।'",
+"Crush बोली – 'I like your vibe.' मैंने कहा – 'हाँ, sad FM से tune किया है।'",
+"माँ बोली – 'तेरा face dull क्यों?' मैंने कहा – 'क्योंकि happiness का server maintenance पर है
 "तुझसे प्यार तो हुआ था, पर तेरे खर्चे देखकर अब डर भी लगता है!",
 "तू बोली – 'मैं तुम्हें भूल जाऊँगी', मैंने कहा – 'थोड़ा नेट स्लो है, टाइम लगेगा!'",
 "प्यार में पागल हुआ था, अब इलाज में EMI भर रहा हूँ!",
