@@ -1,6 +1,4 @@
-......................…
-...,....................
-........................
+................... ................. ................... .................
 <!doctype html>
 <html lang="hi">
 <head>
@@ -10,83 +8,39 @@
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg1:#000;
-  --bg2:#020c0a;
-  --bg3:#002b00;
-  --neon:#39ff14;
-  --muted:rgba(57,255,20,0.08);
+  --bg1:#000;--bg2:#020c0a;--bg3:#002b00;
+  --neon:#39ff14;--muted:rgba(57,255,20,0.08);
 }
 *{box-sizing:border-box;margin:0;padding:0;user-select:none}
 html,body{
-  height:100%;
-  font-family:'Share Tech Mono',monospace;
-  color:var(--neon);
-  overflow:hidden;
+  height:100%;font-family:'Share Tech Mono',monospace;
+  color:var(--neon);overflow:hidden;
   background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
   background-size:300% 300%;
   animation:gradientMove 10s ease infinite;
 }
-@keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+@keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.black-btn,.settings-btn,.enter-btn,.ctrl-btn,.settings-panel button{
+  background:#000;border:1px solid var(--neon);color:var(--neon);cursor:pointer;
 }
-.black-btn{
-  position:fixed;top:10px;left:10px;
-  background:#000;border:1px solid var(--neon);
-  color:var(--neon);padding:6px 12px;border-radius:8px;
-  z-index:200;cursor:pointer;
-}
-header{
-  position:fixed;top:10px;left:0;right:0;
-  text-align:center;z-index:190;font-weight:800;
-  color:var(--neon);font-size:22px;letter-spacing:1px;
-}
-.settings-btn{
-  position:fixed;top:10px;right:10px;background:#000;
-  border:1px solid var(--neon);color:var(--neon);
-  padding:6px 10px;border-radius:8px;z-index:210;cursor:pointer;
-  box-shadow:0 0 8px var(--neon);
-}
+.black-btn{position:fixed;top:10px;left:10px;padding:6px 12px;border-radius:8px;z-index:200}
+header{position:fixed;top:10px;left:0;right:0;text-align:center;z-index:190;font-weight:800;font-size:22px}
+.settings-btn{position:fixed;top:10px;right:10px;padding:6px 10px;border-radius:8px;z-index:210;box-shadow:0 0 8px var(--neon)}
 .settings-panel{
   position:fixed;top:55px;right:10px;background:rgba(0,0,0,0.85);
   border:1px solid var(--neon);border-radius:10px;padding:12px 16px;
-  z-index:220;display:none;flex-direction:column;gap:8px;
-  backdrop-filter:blur(4px);
+  z-index:220;display:none;flex-direction:column;gap:8px;backdrop-filter:blur(4px);
 }
 .settings-panel.show{display:flex;animation:fadeIn .3s ease}
-.settings-panel button{
-  background:#000;border:1px solid var(--neon);
-  color:var(--neon);padding:6px 10px;border-radius:6px;cursor:pointer;
-}
 .view{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;padding:18px;z-index:20}
 .view.active{display:flex;animation:fadeIn .35s ease}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.panel{
-  width:92%;max-width:960px;padding:18px;border-radius:10px;
-  background:rgba(0,0,0,0.55);border:1px solid var(--muted);
-  backdrop-filter:blur(4px);
-}
-.title{
-  font-size:36px;text-align:center;margin-bottom:8px;
-  text-shadow:0 0 8px rgba(57,255,20,0.5);
-}
-.terminal{
-  width:100%;min-height:88px;background:rgba(0,0,0,0.65);
-  border-radius:8px;padding:10px;border:1px solid var(--muted);
-  white-space:pre-wrap;margin:10px 0;
-}
-.enter-btn{
-  position:fixed;right:18px;bottom:18px;background:#000;
-  border:1px solid var(--neon);color:var(--neon);
-  padding:10px 16px;border-radius:10px;z-index:150;cursor:pointer;
-}
+.panel{width:92%;max-width:960px;padding:18px;border-radius:10px;background:rgba(0,0,0,0.55);border:1px solid var(--muted);backdrop-filter:blur(4px);}
+.title{text-align:center;font-size:36px;margin-bottom:8px;text-shadow:0 0 8px rgba(57,255,20,0.5);}
+.terminal{width:100%;min-height:88px;background:rgba(0,0,0,0.65);border-radius:8px;padding:10px;border:1px solid var(--muted);white-space:pre-wrap;margin:10px 0;}
+.enter-btn{position:fixed;right:18px;bottom:18px;padding:10px 16px;border-radius:10px;z-index:150}
 .controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
-.ctrl-btn{
-  background:rgba(0,0,0,0.6);border:1px solid var(--neon);
-  color:var(--neon);padding:8px 14px;border-radius:8px;cursor:pointer;
-  font-weight:700;
-}
+.ctrl-btn{padding:8px 14px;border-radius:8px;font-weight:700}
 .love-wrap{display:flex;flex-direction:column;align-items:center;gap:10px}
 .typing{font-size:30px;font-weight:800;letter-spacing:2px;min-height:40px}
 .cursor{display:inline-block;width:8px;height:1em;background:var(--neon);vertical-align:middle;animation:blink 900ms steps(2) infinite}
@@ -143,20 +97,25 @@ header{
 <button id="enterBtn" class="enter-btn">ENTAR</button>
 
 <script>
-/* Prevent selection and right-click */
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('selectstart',e=>e.preventDefault());
 
-/* VIEW SWITCHING */
 const homeView=document.getElementById('homeView');
 const secondView=document.getElementById('secondView');
+const enterBtn=document.getElementById('enterBtn');
+const blackBtn=document.getElementById('blackBtn');
+const btnBack=document.getElementById('btnBack');
+const btnEntar=document.getElementById('btnEntar');
+const btnPlus=document.getElementById('btnPlus');
+const btnDots=document.getElementById('btnDots');
+
 enterBtn.onclick=()=>{homeView.classList.remove('active');secondView.classList.add('active');}
 blackBtn.onclick=()=>{secondView.classList.remove('active');homeView.classList.add('active');}
 btnBack.onclick=()=>{secondView.classList.remove('active');homeView.classList.add('active');}
 
-/* TERMINAL TYPING */
+/* TERMINAL */
 const terminal=document.getElementById('terminal');
-const lines=['Initializing vinay. love secure shell...','Authenticating ••• success','Loading poetic modules...','Mounting emotions [ok]','Access Granted — Welcome'];
+const lines=['Initializing us secure shell...','Authenticating ••• success','Loading poetic modules...','Mounting emotions [ok]','Access Granted — Welcome'];
 let i=0,j=0;
 function typeTerm(){
   if(i>=lines.length)return;
@@ -168,29 +127,23 @@ function typeTerm(){
 }
 typeTerm();
 
-/* LOVE ANIMATION */
+/* LOVE TEXT */
 const loveEl=document.getElementById('loveTyping');
 const loveCur=document.getElementById('loveCursor');
 const loveGlow=document.getElementById('loveGlow');
 function startLove(){
   const text='I LOVE YOU';
-  let k=0;loveEl.textContent='';loveGlow.textContent='';
-  loveCur.style.display='inline-block';
+  let k=0;loveEl.textContent='';loveGlow.textContent='';loveCur.style.display='inline-block';
   function t(){
-    if(k<=text.length){
-      loveEl.textContent=text.slice(0,k);k++;
-      setTimeout(t,120);
-    }else{
-      loveCur.style.display='none';
-      loveGlow.textContent=text;
-      loveGlow.classList.add('show');
-    }
+    if(k<=text.length){loveEl.textContent=text.slice(0,k);k++;setTimeout(t,120);}
+    else{loveCur.style.display='none';loveGlow.textContent=text;loveGlow.classList.add('show');}
   }t();
 }
 btnEntar.onclick=startLove;
 
 /* SHAYRI GENERATOR */
-const base=["उसने कहा – 'मुझसे दूर रहो।' मैंने कहा – 'ठीक है, अब screenshots से काम चलेगा।'",
+const base=[
+"उसने कहा – 'मुझसे दूर रहो।' मैंने कहा – 'ठीक है, अब screenshots से काम चलेगा।'",
 "माँ बोली – 'कब तक phone देखेगा?' मैंने कहा – 'जब तक last seen दिखती रहेगी।'",
 "Crush बोली – 'तुम cute हो!' मैंने कहा – 'हाँ, पर limited edition – out of stock।'",
 "पप्पू बोला – 'तेरा exam कैसा गया?' मैंने कहा – 'जैसे love story – start funny, end tragic।'",
@@ -199,37 +152,12 @@ const base=["उसने कहा – 'मुझसे दूर रहो।'
 "डॉक्टर बोला – 'तू थका क्यों है?' मैंने कहा – 'emotions night shift में हैं।'",
 "वो बोली – 'तुम hero हो।' मैंने कहा – 'हाँ, heartbreak movie का।'",
 "Crush बोली – 'मैं किसी और को पसंद करती हूँ।' मैंने कहा – 'ठीक है, delete press करना सीख लिया हूँ।'",
-"पप्पू बोला – 'तेरा smile fake है?' मैंने कहा – 'हाँ, pain-compatible version है।'",
-"माँ बोली – 'तेरी GF कहाँ है?' मैंने कहा – 'recycle bin में।'",
-"Crush बोली – 'तुम boring हो।' मैंने कहा – 'हाँ, अब life भी buffer कर रही है।'",
-"डॉक्टर बोला – 'परेशान क्यों है?' मैंने कहा – 'crush online है, reply नहीं।'",
-"Crush बोली – 'मैं तुम्हें miss करती हूँ।' मैंने कहा – 'auto-lie detector beep किया।'",
-"पप्पू बोला – 'भाई, tu single क्यों?' मैंने कहा – 'क्योंकि heartbreak का subscription lifetime है।'",
-"Crush बोली – 'तुम strong हो।' मैंने कहा – 'हाँ, emoji से दर्द छुपा लेता हूँ।'",
-"Crush बोली – 'तुम caring हो।' मैंने कहा – 'हाँ, इसलिए ignored हूँ।'",
-"डॉक्टर बोला – 'तेरा pressure low है।' मैंने कहा – 'हाँ, reply नहीं आया।'",
-"Crush बोली – 'I like your vibe.' मैंने कहा – 'हाँ, sad FM से tune किया है।'",
-"माँ बोली – 'तेरा face dull क्यों?' मैंने कहा – 'क्योंकि happiness का server maintenance पर है
 "तुझसे प्यार तो हुआ था, पर तेरे खर्चे देखकर अब डर भी लगता है!",
 "तू बोली – 'मैं तुम्हें भूल जाऊँगी', मैंने कहा – 'थोड़ा नेट स्लो है, टाइम लगेगा!'",
 "प्यार में पागल हुआ था, अब इलाज में EMI भर रहा हूँ!",
 "तेरा चेहरा देख कर दिल ने कहा – 'लगता है WiFi मिल गया!'",
 "तू बोली – 'मैं रो रही हूँ', मैंने कहा – 'Data On कर, Video Call पर आ!'",
-"तेरा प्यार ऐसा है – जैसे Recharge खत्म होते ही Off!",
-"मोहब्बत में ऐसा डूबा हूँ – अब Password भी तेरा नाम रख दिया है!",
-"तेरे बिना WiFi सा लगता है — कनेक्शन है पर स्पीड नहीं!",
-"वो बोली 'तुम बहुत स्वीट हो' — मैंने कहा 'शुगर फ्री हूँ बीटू!'",
-"मोहब्बत का सिग्नल तो मिला, पर नेटवर्क हमेशा बिज़ी निकला!",
-"दिल लगाया था प्यार में, अब बैटरी सेव मोड में चल रहे हैं यार में!",
-"तेरी यादें RAM की तरह हैं — क्लियर करो तो भी रहती हैं!",
-"तू हँस दे तो मेरा Data Reset हो जाता है!",
-"वो बोली 'Main Busy Hoon' — और Insta पर Reel डाल दी!",
-"तेरा प्यार Virus बन गया — System Hang कर दिया!",
-"तू Offline भी Online लगती है — शायद Notification चालू है!",
-"तेरे प्यार का Effect ऐसा — अब Charger भी Romantic लगता है!",
-"तेरे बिना Net Slow लगता है — दिल भी Buffering में रहता है!",
-"तेरा नाम सुनते ही WiFi Connect हो जाता है!",
-"तू मुस्कुराई – तो लगा Cashback मिल गया!"
+"तेरे बिना WiFi सा लगता है — कनेक्शन है पर स्पीड नहीं!"
 ];
 function makeShayri(){
   const a=base[Math.floor(Math.random()*base.length)];
@@ -245,30 +173,21 @@ function showShayri(){
   sh.textContent='';sh.classList.remove('show');
   let p=0;
   function step(){
-    if(p<=text.length){
-      sh.textContent=text.slice(0,p)+(p%2?'█':'');
-      p++;setTimeout(step,35);
-    }else{
-      sh.textContent=text;sh.classList.add('show');
-    }
+    if(p<=text.length){sh.textContent=text.slice(0,p)+(p%2?'█':'');p++;setTimeout(step,35);}
+    else{sh.textContent=text;sh.classList.add('show');}
   }step();
 }
 btnPlus.onclick=showShayri;
 
-/* DOTS GREETING */
+/* DOTS MESSAGE */
 const helloEl=document.getElementById('helloMsg');
 btnDots.onclick=()=>{
   const msg="Hello sir, आप कैसे हैं ☺️";
   helloEl.textContent='';helloEl.classList.remove('show');
   let x=0;
   function type(){
-    if(x<=msg.length){
-      helloEl.textContent=msg.slice(0,x)+(x%2?'█':'');
-      x++;setTimeout(type,80);
-    }else{
-      helloEl.textContent=msg;
-      helloEl.classList.add('show');
-    }
+    if(x<=msg.length){helloEl.textContent=msg.slice(0,x)+(x%2?'█':'');x++;setTimeout(type,80);}
+    else{helloEl.textContent=msg;helloEl.classList.add('show');}
   }type();
 };
 
